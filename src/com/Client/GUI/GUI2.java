@@ -11,15 +11,22 @@ public class GUI2 extends JFrame {
 
         JFrame frame;
         JLabel displayField;
+        JLabel displayField2;
         ImageIcon image;
+        ImageIcon image2;
 
         public GUI2() {
             frame = new JFrame("Image Display Test");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            System.out.println(getFileFromResourceAsStream("com/Resources/images/First-Character.png"));
             try {
                 image = new ImageIcon(getFileFromResourceAsStream("com/Resources/images/First-Character.png"));
+                image2 = new ImageIcon(getFileFromResourceAsStream("com/Resources/images/tilemap.png"));
+//
                 displayField = new JLabel(image);
+                displayField2 = new JLabel(image2);
                 frame.add(displayField);
+                frame.add(displayField2);
             } catch (Exception e) {
                 System.out.println("Image can not be found!");
             }
