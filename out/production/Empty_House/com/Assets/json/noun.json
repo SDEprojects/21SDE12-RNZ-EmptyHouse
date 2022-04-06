@@ -1,0 +1,17 @@
+{
+  "north": [
+    "up"
+  ],
+  "south": [
+    "down"
+  ],
+  "east": [
+    "right"
+  ],
+  "west": [
+    "left"
+  ],
+  "knife": [],
+  "book": [],
+  "skeleton key": []
+}
