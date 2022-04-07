@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import com.Client.GUI.GUI2;
+import com.Client.GUI.MyFrame;
 
 public class Main {
 
@@ -42,7 +42,7 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        GUI2 i = new GUI2();
+        new MyFrame();
 //        BufferedReader in;
 //        String input;
 //        String output;
