@@ -1,0 +1,80 @@
+{
+  "start": [
+    "run",
+    "execute",
+    "play",
+    "new game"
+  ],
+  "quit": [
+    "exit",
+    "leave",
+    "quit game"
+  ],
+  "continue": [
+    "load"
+  ],
+
+  "go": [
+    "move",
+    "turn",
+    "walk",
+    "run",
+    "flee"
+  ],
+  "get": [
+    "pick up",
+    "pickup",
+    "pick",
+    "grab",
+    "take",
+    "add"
+  ],
+  "drop": [
+    "discard",
+    "leave",
+    "throw"
+  ],
+  "use": [
+    "enter",
+    "interact",
+    "open"
+  ],
+  "talk": [
+    "hello",
+    "speak"
+  ],
+  "inspect": [
+    "look at",
+    "look",
+    "examine",
+    "see",
+    "check out",
+    "search",
+    "investigate",
+    "scan",
+    "review",
+    "view",
+    "study",
+    "view",
+    "check"
+  ],
+  "help": [
+    "instructions",
+    "menu"
+  ],
+  "commands": [
+    "command"
+  ],
+  "map": [
+    "location",
+    "where am i"
+  ],
+  "inventory": [
+    "stock",
+    "supply",
+    "cache",
+    "purse",
+    "hoard",
+    "stockpile"
+  ]
+}

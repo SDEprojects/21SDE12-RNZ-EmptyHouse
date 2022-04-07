@@ -1,13 +1,12 @@
 package com.Client;
 
-import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import com.Client.BackgroundMusic;
+
+import com.Client.GUI.MyFrame;
 
 public class Main {
 
@@ -43,32 +42,34 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-        BufferedReader in;
-        String input;
-        String output;
-// correcting previous commit
-
-        game = new Game();
-        in = new BufferedReader(new InputStreamReader(System.in));
-        game.showIntro();
-        do {
-            System.out.print("Enter your command > ");
-            input = in.readLine();
-            output = "";
-            switch (input) {
-                case "save":
-                    saveGame();
-                    break;
-                case "load":
-                    loadGame();
-                    break;
-                default:
-                    output = game.runCommand(input);
-                    break;
-            }
-            System.out.println(output);
-        } while (!"quit".equals(input));
+        new MyFrame();
+//        BufferedReader in;
+//        String input;
+//        String output;
+//// correcting previous commit
+//
+//        game = new Game();
+//        in = new BufferedReader(new InputStreamReader(System.in));
+//        game.showIntro();
+//        do {
+//            System.out.print("Enter your command > ");
+//            input = in.readLine();
+//            output = "";
+//            switch (input) {
+//                case "save":
+//                    saveGame();
+//                    break;
+//                case "load":
+//                    loadGame();
+//                    break;
+//                default:
+//                    output = game.runCommand(input);
+//                    break;
+//            }
+//            System.out.println(output);
+//        } while (!"quit".equals(input));
     }
-
-
 }
+
+
+
