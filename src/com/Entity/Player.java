@@ -30,7 +30,7 @@ public class Player extends Entity{
 
     public void setDefaultValues(){
         worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 21;
+        worldY = gp.tileSize * 33;
         speed = 4;
         direction = "down";
     }
@@ -99,9 +99,11 @@ public class Player extends Entity{
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
+                System.out.println("World X is " + worldX +" World Y is "+worldY);
             }
 
         }
+
 
 
 
@@ -132,8 +134,6 @@ public class Player extends Entity{
         }
 
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
-
-
 
     }
 
