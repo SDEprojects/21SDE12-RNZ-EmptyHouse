@@ -1,60 +1,67 @@
 package com.Util;
 
+import com.gameobjects.Thing;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import java.util.ArrayList;
+import java.util.Collection;
 
 
 //This JSON handler will handle all the json paths.
 public class JSON_Handler {
-    static JSONParser parser = new JSONParser();
-    static final String JSON_PATH = "src/com/Assets/json/";
+    public static Collection<Thing> things;
 
-
-    public static JSONObject getJSON(String filename, String fileType) {
-        JSONObject jsonObject = null;
-        String path = getJsonPath(filename, fileType);
-
+    static {
         try {
-            if(Files.exists(Path.of(path))){
-            FileReader file = new FileReader(path);
-            Object obj = parser.parse(file);
-            jsonObject = (JSONObject) obj; //Casting the Json file
-            file.close();
-            }
-
+            things = getThings();
         } catch (IOException e) {
-            System.err.print("Error. File not found");
+            e.printStackTrace();
         } catch (ParseException e) {
-            System.out.println("Position: " + e.getPosition());
             e.printStackTrace();
         }
-        return jsonObject;
+    }
+
+    public JSON_Handler() throws IOException, ParseException {
+    }
+
+    public static Collection<Thing> getThings() throws IOException, ParseException {
+        InputStreamReader isr = new InputStreamReader(getFileFromResourceAsStream("com/Assets/json/items.json"));
+        Object objItems = new JSONParser().parse(isr);
+        Collection<Object> inventory = new ArrayList<>();
+        Collection<Thing> items = new ArrayList<>();
+        JSONArray jaItems = (JSONArray) objItems;
+        inventory.addAll(jaItems);
+
+        for (Object obItems:
+                inventory) {
+            JSONObject inventoryItem = (JSONObject) obItems;
+            Thing questItem;
+            questItem = new Thing((String) inventoryItem.get("name"), (String) inventoryItem.get("location"), (String) inventoryItem.get("description"));
+            items.add(questItem);
+        }
+        return items;
     }
 
 
-    public static String getJsonPath(String fileName, String fileLocation){
-        String path = null;
-
-        switch (fileLocation.toLowerCase()){
-            case "json":
-                path =  JSON_PATH + fileName;
-                break;
-            default:
-                System.out.println("Invalid file type!");
+    private static InputStream getFileFromResourceAsStream(String fileName) {
+        ClassLoader classLoader = JSON_Handler.class.getClassLoader();
+        InputStream inputStream = classLoader.getResourceAsStream(fileName);
+        if (inputStream == null) {
+            throw new IllegalArgumentException("file not found! " + fileName);
+        } else {
+            return inputStream;
         }
-        return path;
     }
 
     public static void main(String[] args) {
-        //Test your json paths here
-        System.out.println(getJSON("PlayerCommands.JSON", "json"));
-        System.out.println(getJSON("noun.JSON", "json"));
-        System.out.println(getJSON("verbs.JSON", "json"));
+        System.out.println(things);
+
     }
 }

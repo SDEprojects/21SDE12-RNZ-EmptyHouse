@@ -7,8 +7,8 @@ import com.Util.*;
 public class Actor extends ThingHolder implements java.io.Serializable {
 
     //  private Room location; // the Room where the Person is at present
-    public Actor(String aName, String aDescription, ThingList tl, Room aRoom) {
-        super(aName, aDescription, tl, aRoom); // init super class
+    public Actor(String aName, String aDescription, ThingList tl, Room aRoom, String description) {
+        super(aName, aDescription, tl, aRoom, description); // init super class
     }
 
     public void setLocation(Room aRoom) {

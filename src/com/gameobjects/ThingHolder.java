@@ -9,8 +9,8 @@ public class ThingHolder extends Thing implements java.io.Serializable {
     private String thingStr = "";
 
     public ThingHolder(String aName, String aDescription, ThingList tl,
-                       ThingHolder aContainer) {
-        super(aName, aDescription, aContainer);
+                       ThingHolder aContainer, String description) {
+        super(aName, aDescription, description);
         things = tl;
     }
 

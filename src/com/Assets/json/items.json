@@ -1,34 +1,25 @@
 [
-  "Items": {
-    "key": [
       {
-        "location": "entrance"
-      }
-    ],
-    "skeleton key": [
+        "name": "key", "location": "entrance", "description": "an old rusted key, feels a little slimy..."
+      },
+
       {
-        "location": "bathroom"
-      }
-    ],
-    "book": [
+        "name": "skeleton-key", "location": "bathroom", "description": "The base of this keep seems to be engraved with a skull..."
+      },
+
       {
-        "location": "main bedroom"
-      }
-    ],
-    "pan": [
+        "name": "book", "location": "main bedroom", "description": "A book with torn pages and scribblings of a rambling madman."
+      },
+
       {
-        "location": "kitchen"
-      }
-    ],
-    "knife":[
+        "name": "pan", "location": "kitchen", "description": "It's said it can deflect bullets, but that seems a bit far fetched."
+      },
+
       {
-        "location": "kitchen"
-      }
-    ],
-    "flashlight": [
+        "name": "knife", "location": "kitchen", "description": "Dull and stained, it looks like this tool has seen some usage already."
+      },
+
       {
-        "location": "second bedroom"
+        "name": "flashlight", "location": "second bedroom", "description": "It flickers.....maybe if you shake the batteries it'll work."
       }
-    ]
-  }
-}]
+]

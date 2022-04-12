@@ -9,14 +9,13 @@ public class Thing implements java.io.Serializable {
     private boolean movable;
     private ThingHolder container;
 
-    public Thing(String aName, String aDescription, ThingHolder aContainer) {
+    public Thing(String aName, String aDescription, String description) {
         // constructor
         this.name = aName;
         this.description = aDescription;
+        this.description = description;
         this.takable = true;
         this.movable = true;
-        this.container = aContainer;
-
     }
 
     public Thing(String aName, String aDescription,
