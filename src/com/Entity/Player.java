@@ -69,6 +69,10 @@ public class Player extends Entity{
                 direction = "right";
             }
 
+            if((worldX >= 1250 && worldX <= 1325) && (1450 < worldY && worldY < 1550)){
+                worldY = worldY-1000;
+            }
+
             // Check tile collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
@@ -136,5 +140,7 @@ public class Player extends Entity{
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
+
+
 
 }
