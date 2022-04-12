@@ -7,8 +7,8 @@ public class ContainerThing extends ThingHolder implements java.io.Serializable 
 
     //Working on making doors and drawers possible to open
     public ContainerThing(String aName, String aDescription, ThingList tl,
-                          ThingHolder aContainer) {
-        super(aName, aDescription, tl, aContainer);
+                          ThingHolder aContainer, String description) {
+        super(aName, aDescription, tl, aContainer, description);
         openable = false;
         isopen = true;
     }

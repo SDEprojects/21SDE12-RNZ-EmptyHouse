@@ -10,7 +10,7 @@ public class Room extends ThingHolder implements java.io.Serializable {
     private Room north, south, west, east, up, down;
 
     public Room() {
-        super("New Room", "", null, null); // init superclass
+        super("New Room", "", null, null, ""); // init superclass
         this.north = null;
         this.south = null;
         this.west = null;
