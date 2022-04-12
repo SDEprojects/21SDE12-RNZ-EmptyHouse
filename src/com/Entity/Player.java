@@ -29,9 +29,9 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 23;
-        worldY = gp.tileSize * 33;
-        speed = 4;
+        worldX = gp.tileSize * 42;
+        worldY = gp.tileSize * 45;
+        speed = 5;
         direction = "down";
     }
 
@@ -68,6 +68,17 @@ public class Player extends Entity{
             else if(keyH.rightPressed) {
                 direction = "right";
             }
+
+            // Check if stairs
+            if((1750 <= worldX && worldX <= 1800) && (1600 <= worldY && worldY <= 1700)){
+                worldY -= 1275;
+            }
+
+            if((1750 <= worldX && worldX <= 1850) && (400 <= worldY && worldY <= 500)){
+                worldY += 1275;
+            }
+
+
 
             // Check tile collision
             collisionOn = false;
