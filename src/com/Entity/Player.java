@@ -69,6 +69,7 @@ public class Player extends Entity{
                 direction = "right";
             }
 
+
             // Check if stairs
             if((1750 <= worldX && worldX <= 1800) && (1600 <= worldY && worldY <= 1700)){
                 worldY -= 1275;
@@ -77,6 +78,7 @@ public class Player extends Entity{
             if((1750 <= worldX && worldX <= 1850) && (400 <= worldY && worldY <= 500)){
                 worldY += 1275;
             }
+
 
 
 
@@ -147,5 +149,7 @@ public class Player extends Entity{
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
+
+
 
 }
