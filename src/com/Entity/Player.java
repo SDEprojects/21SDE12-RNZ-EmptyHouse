@@ -29,8 +29,8 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 42;
-        worldY = gp.tileSize * 45;
+        worldX = gp.tileSize * 40;
+        worldY = gp.tileSize * 23;
         speed = 5;
         direction = "down";
     }
@@ -71,8 +71,8 @@ public class Player extends Entity{
 
 
             // Check if stairs
-            if((1750 <= worldX && worldX <= 1800) && (1600 <= worldY && worldY <= 1700)){
-                worldY -= 1275;
+            if((1650 <= worldX && worldX <= 1750) && (1400 <= worldY && worldY <= 1500)){
+                worldY += 500;
             }
 
             if((1750 <= worldX && worldX <= 1850) && (400 <= worldY && worldY <= 500)){
