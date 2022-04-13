@@ -28,6 +28,8 @@ public class Main {
         window.setLocationRelativeTo(null);
         window.setVisible(true);
 
+        gamePanel.setUpGame();
+
         gamePanel.startGameThread();
 //        BufferedReader in;
 //        String input;

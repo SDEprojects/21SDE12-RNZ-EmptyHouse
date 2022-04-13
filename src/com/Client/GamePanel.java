@@ -20,8 +20,8 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenHeight = tileSize * maximumScreenRows;
 
     // World map settings
-    public final int maxWorldColumn = 75;
-    public final int maxWorldRow = 75;
+    public final int maxWorldColumn = 50;
+    public final int maxWorldRow = 50;
     public final int maxWorldWidth = tileSize * maxWorldColumn;
     public final int maxWorldHeight = tileSize * maxWorldRow;
 
@@ -31,10 +31,17 @@ public class GamePanel extends JPanel implements Runnable {
     TileManager tileM = new TileManager(this);
 
     // Instantiate the key handler
-    KeyHandler keyH = new KeyHandler();
+    KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
+    public UI ui = new UI(this);
     public Player player = new Player(this, keyH);
+
+    // Game states
+    public int gameState;
+    public final int titleState = 0;
+    public final int playState = 1;
+    public final int pauseState = 2;
 
 
     public GamePanel(){
@@ -45,9 +52,15 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
+    public void setUpGame(){
+        gameState = titleState;
+    }
+
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
+
+
     }
 
     @Override
@@ -75,7 +88,13 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void update(){
-        player.update();
+
+        if(gameState == playState){
+            player.update();
+        }
+        if (gameState == pauseState){
+            //
+        }
 
     }
 
@@ -84,10 +103,14 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        tileM.draw(g2);
-
-        player.draw(g2);
-
+        //Title Screen
+        if(gameState == titleState){
+            ui.draw(g2);
+        } else {
+            tileM.draw(g2);
+            player.draw(g2);
+            ui.draw(g2);
+        }
         g2.dispose();
     }
 
