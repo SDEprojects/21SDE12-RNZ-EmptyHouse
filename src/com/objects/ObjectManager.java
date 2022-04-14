@@ -40,10 +40,16 @@ public class ObjectManager {
     }
 
     public void setObjects(){
+        int[] x = {11, 12, 13, 14, 15, 16};
+        int[] y = {23, 23, 23, 23, 23, 23};
         for (int i = 0; i < objects.size(); i++) {
             gp.obj.set(i, objects.get(i));
-            gp.obj.get(i).worldX = GameUtils.getRandomNumber(0,50) *gp.tileSize;
-            gp.obj.get(i).worldY = GameUtils.getRandomNumber(0,50) *gp.tileSize;
+            int xAxis = x[i];
+            int yAxis = y[i];
+            //gp.obj.get(i).worldX = GameUtils.getRandomNumber(0,50) *gp.tileSize;
+            //gp.obj.get(i).worldY = GameUtils.getRandomNumber(0,50) *gp.tileSize;
+            gp.obj.get(i).worldX = (xAxis) *gp.tileSize;
+            gp.obj.get(i).worldY = (yAxis) *gp.tileSize;
         }
 
         }
