@@ -1,0 +1,8 @@
+[
+  {"name": "red-couch", "url": "furniture/red-couch_16x16.png"},
+  {"name":  "black-couch", "url":  "furniture/black-couch_16x16.png"},
+  {"name":  "bookshelf", "url":  "furniture/bookshelf_16x16.png"},
+  {"name":  "desk", "url":  "furniture/desk_16x16.png"},
+  {"name":  "furnace", "url":  "furniture/furnace_16x16.png"},
+  {"name":  "table", "url":  "furniture/table_16x16.png"}
+]

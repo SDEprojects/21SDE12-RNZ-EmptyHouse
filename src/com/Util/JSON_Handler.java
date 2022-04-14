@@ -1,5 +1,6 @@
 package com.Util;
 
+import com.gameobjects.Furniture;
 import com.gameobjects.Thing;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -10,6 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -17,10 +19,12 @@ import java.util.Collection;
 //This JSON handler will handle all the json paths.
 public class JSON_Handler {
     public static Collection<Thing> things;
+    public static Collection<Furniture> furnatures;
 
     static {
         try {
             things = getThings();
+            furnatures = getFurniture();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ParseException e) {
@@ -49,6 +53,25 @@ public class JSON_Handler {
         return items;
     }
 
+    public static Collection<Furniture>  getFurniture() throws IOException, ParseException{
+        InputStreamReader isr = new InputStreamReader(getFileFromResourceAsStream("com/Assets/json/furniture.json"));
+        Object objItems = new JSONParser().parse(isr);
+        System.out.println(objItems);
+        Collection<Object> inventory = new ArrayList<>();
+        JSONArray jaItems = (JSONArray) objItems;
+        inventory.addAll(jaItems);
+        Collection<Furniture> items = new ArrayList<>();
+
+        for (Object obItems:
+                inventory) {
+            JSONObject inventoryItem = (JSONObject) obItems;
+            Furniture questItem;
+            questItem = new Furniture((String) inventoryItem.get("name"), (String) inventoryItem.get("url"));
+            items.add(questItem);
+        }
+        return items;
+    }
+
 
     private static InputStream getFileFromResourceAsStream(String fileName) {
         ClassLoader classLoader = JSON_Handler.class.getClassLoader();
@@ -62,6 +85,7 @@ public class JSON_Handler {
 
     public static void main(String[] args) {
         System.out.println(things);
+        System.out.println(furnatures);
 
     }
 }
