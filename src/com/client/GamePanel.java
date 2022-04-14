@@ -9,6 +9,7 @@ import com.tile.TileManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -41,7 +42,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     ObjectManager oManager = new ObjectManager(this);
 
-    public Object obj[] = new Object[2];
+    public ArrayList<Object> obj = oManager.getObjects();
 
     // Game states
     public int gameState;
@@ -59,7 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void setUpGame(){
-        oManager.setObject();
+        oManager.setObjects();
         gameState = titleState;
     }
 
@@ -116,9 +117,9 @@ public class GamePanel extends JPanel implements Runnable {
         } else {
             tileM.draw(g2);
 
-            for (int i =0; i< obj.length; i++){
-                if (obj[i] != null){
-                    obj[i].draw(g2,this);
+            for (int i =0; i< obj.size(); i++){
+                if (obj.get(i) != null){
+                    obj.get(i).draw(g2,this);
                 }
             }
 

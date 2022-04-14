@@ -72,7 +72,7 @@ public class JSON_Handler {
     }
 
 
-    private static InputStream getFileFromResourceAsStream(String fileName) {
+    public static InputStream getFileFromResourceAsStream(String fileName) {
         ClassLoader classLoader = JSON_Handler.class.getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream(fileName);
         if (inputStream == null) {
