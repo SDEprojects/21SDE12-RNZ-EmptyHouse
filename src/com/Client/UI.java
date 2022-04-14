@@ -1,6 +1,7 @@
 package com.Client;
 
 import java.awt.*;
+import java.util.Timer;
 
 public class UI {
     GamePanel gp;
@@ -25,7 +26,7 @@ public class UI {
         }
 
         if (gp.gameState == gp.playState){
-            drawHPStatus();
+            drawHUD();
 
         }
         if (gp.gameState == gp.pauseState){
@@ -72,11 +73,37 @@ public class UI {
 
     }
 
-    public void drawHPStatus(){
-        String text = "HP: 100";
-        int x = getXForCenteredText(text);
-        int y = gp.tileSize*3;
-        g2.drawRect(x,y,200,200);
+    public void drawHUD(){
+        // HUD dimensions
+        int x = 0;
+        int y = 0;
+        int width = gp.screenWidth;
+        int height = gp.tileSize*2;
+
+
+        // Draw HUD
+        g2.setColor(Color.black);
+        g2.fillRect(x,y,width, height);
+
+        // Draw HP Counter
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
+        g2.setColor(Color.white);
+        String HPText = "HP: 100";
+        x = gp.tileSize*12;
+        y = gp.tileSize;
+        g2.drawString(HPText, x,y);
+
+        // Draw Timer
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
+        g2.setColor(Color.white);
+        String TimerText = String.valueOf(System.currentTimeMillis()/1000);
+
+
+
+        x = gp.tileSize;
+        y = gp.tileSize;
+        g2.drawString(TimerText, x,y);
+
     }
 
     public int getXForCenteredText(String text){
