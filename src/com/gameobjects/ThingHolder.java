@@ -1,6 +1,6 @@
 package com.gameobjects;
 
-import com.Util.ThingAndThingHolder;
+import com.util.ThingAndThingHolder;
 
 public class ThingHolder extends Thing implements java.io.Serializable {
 
