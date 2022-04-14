@@ -8,8 +8,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class GameUtils {
-    ArrayList<Furniture> furniture;
-    public ArrayList<Furniture> setKeyFurniture() {
+    static ArrayList<Furniture> furniture;
+    public static ArrayList<Furniture> setKeyFurniture() {
 
         Thing key = new Thing("key", "Key to the exit.");
 
