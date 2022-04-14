@@ -1,8 +1,8 @@
 package com.gameobjects;
 
-import com.House.Room;
-import com.Util.ThingAndThingHolder;
-import com.Util.*;
+import com.house.Room;
+import com.util.ThingAndThingHolder;
+import com.util.*;
 
 public class Actor extends ThingHolder implements java.io.Serializable {
 
