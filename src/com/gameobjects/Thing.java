@@ -9,6 +9,11 @@ public class Thing implements java.io.Serializable {
     private boolean movable;
     private ThingHolder container;
 
+    public Thing(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public Thing(String aName, String aDescription, String description) {
         // constructor
         this.name = aName;
