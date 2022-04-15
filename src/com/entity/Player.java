@@ -71,8 +71,23 @@ public class Player extends Entity{
 
 
             // Check if stairs
-            if((1650 <= worldX && worldX <= 1750) && (1400 <= worldY && worldY <= 1500)){
-                worldY += 500;
+            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
+                    ((gp.tileSize*31) <= worldY && worldY <= (gp.tileSize*33))){
+                worldY += gp.tileSize*7;
+            }
+            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
+                    ((gp.tileSize*34) <= worldY && worldY <= (gp.tileSize*36))){
+                worldY -= gp.tileSize*7;
+            }
+            if(((gp.tileSize*22) <= worldX && worldX <= (gp.tileSize*24)) &&
+                    ((gp.tileSize*18) <= worldY && worldY <= (gp.tileSize*20))) {
+                worldY -= gp.tileSize * 7;
+                worldX += gp.tileSize * 5;
+            }
+            if(((gp.tileSize*27) <= worldX && worldX <= (gp.tileSize*29)) &&
+                    ((gp.tileSize*15) <= worldY && worldY <= (gp.tileSize*17))){
+                worldY += gp.tileSize*7;
+                worldX -= gp.tileSize * 5;
             }
 
             if((1750 <= worldX && worldX <= 1850) && (400 <= worldY && worldY <= 500)){
