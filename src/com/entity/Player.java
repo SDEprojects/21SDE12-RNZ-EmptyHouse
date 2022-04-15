@@ -11,6 +11,7 @@ import java.io.IOException;
 public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
+    public String currentRoom;
 
     public final int screenX;
     public final int screenY;
@@ -18,6 +19,7 @@ public class Player extends Entity{
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
         this.keyH = keyH;
+        currentRoom = "Library";
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
@@ -90,9 +92,16 @@ public class Player extends Entity{
                 worldX -= gp.tileSize * 5;
             }
 
-            if((1750 <= worldX && worldX <= 1850) && (400 <= worldY && worldY <= 500)){
-                worldY += 1275;
-            }
+
+
+            // Current room
+            if(((gp.tileSize*32) <= worldX && worldX <= (gp.tileSize*43)) &&
+                    ((gp.tileSize*21) <= worldY && worldY <= (gp.tileSize*33))){
+                currentRoom = "Library";
+            } else if(((gp.tileSize*20) <= worldX && worldX <= (gp.tileSize*31)) &&
+                    ((gp.tileSize*21) <= worldY && worldY <= (gp.tileSize*24))){
+                        currentRoom = "Dining Room";}
+            else {currentRoom = "???";}
 
 
 
