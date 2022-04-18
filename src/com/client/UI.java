@@ -1,5 +1,7 @@
 package com.client;
 
+import com.entity.Player;
+
 import java.awt.*;
 import java.util.concurrent.TimeUnit;
 
@@ -8,9 +10,13 @@ public class UI {
     Graphics2D g2;
     Font font1;
     public int menuOptionNumber = 0;
+    Player player;
 
-    public UI(GamePanel gp){
+
+    public UI(GamePanel gp, Player player){
         this.gp = gp;
+        this.player = player;
+
         font1 = new Font("Serif", Font.BOLD, 100);
     }
 
@@ -102,6 +108,16 @@ public class UI {
         x = gp.tileSize;
         y = gp.tileSize;
         g2.drawString(TimerText, x,y);
+
+        // Draw Current Room
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,24F));
+        g2.setColor(Color.white);
+
+        String currentRoomText = player.currentRoom;
+
+        x = gp.tileSize;
+        y = gp.tileSize*2;
+        g2.drawString(currentRoomText, x,y);
 
     }
 
