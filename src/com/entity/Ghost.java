@@ -29,15 +29,15 @@ public class Ghost extends Entity{
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
-        //solidArea = new Rectangle(8,16,20,24);
+        solidArea = new Rectangle(8,16,20,24);
 
         setDefaultValues();
 //        getGhostImage();
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 38;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 36;
+        worldY = gp.tileSize * 9;
         speed = 3;
         direction = "up";
 
@@ -155,7 +155,15 @@ public class Ghost extends Entity{
         }
         System.out.println("called");
 
-        g2.drawImage(image, worldX, worldY, gp.tileSize, gp.tileSize, null);
+        int screenX = worldX - gp.player.worldX + gp.player.screenX;
+        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+        if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+           worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+           worldY+ gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldY- gp.tileSize < gp.player.worldY + gp.player.screenY){
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        }
 
     }
     public int getRandomNumber(int min, int max) {
