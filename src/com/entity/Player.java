@@ -127,7 +127,7 @@ public class Player extends Entity{
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
-                System.out.println("World X is " + worldX +" World Y is "+worldY);
+                //System.out.println("World X is " + worldX +" World Y is "+worldY);
             }
 
         }
@@ -164,6 +164,7 @@ public class Player extends Entity{
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
+
 
 
 

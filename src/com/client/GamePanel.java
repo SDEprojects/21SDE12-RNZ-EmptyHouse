@@ -2,6 +2,8 @@ package com.client;
 
 
 
+import com.entity.Entity;
+import com.entity.Ghost;
 import com.entity.Player;
 import com.objects.Object;
 import com.objects.ObjectManager;
@@ -39,6 +41,7 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public UI ui = new UI(this);
     public Player player = new Player(this, keyH);
+    public Ghost ghost = new Ghost(this);
 
     ObjectManager oManager = new ObjectManager(this);
 
@@ -62,6 +65,7 @@ public class GamePanel extends JPanel implements Runnable {
     public void setUpGame(){
         oManager.setObjects();
         gameState = titleState;
+
     }
 
     public void startGameThread(){
@@ -99,6 +103,8 @@ public class GamePanel extends JPanel implements Runnable {
 
         if(gameState == playState){
             player.update();
+
+            ghost.setGhost();
         }
         if (gameState == pauseState){
             //
@@ -123,6 +129,7 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
+            ghost.draw(g2);
             player.draw(g2);
             ui.draw(g2);
         }
