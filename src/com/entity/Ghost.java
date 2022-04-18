@@ -36,7 +36,7 @@ public class Ghost extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 36;
+        worldX = gp.tileSize * 37;
         worldY = gp.tileSize * 9;
         speed = 3;
         direction = "up";
@@ -153,7 +153,6 @@ public class Ghost extends Entity{
                 break;
 
         }
-        System.out.println("called");
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;

@@ -95,12 +95,30 @@ public class Player extends Entity{
 
 
             // Current room
-            if(((gp.tileSize*32) <= worldX && worldX <= (gp.tileSize*43)) &&
-                    ((gp.tileSize*21) <= worldY && worldY <= (gp.tileSize*33))){
+            if(((gp.tileSize*31) <= worldX && worldX <= (gp.tileSize*43)) &&
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*27))){
                 currentRoom = "Library";
-            } else if(((gp.tileSize*20) <= worldX && worldX <= (gp.tileSize*31)) &&
-                    ((gp.tileSize*21) <= worldY && worldY <= (gp.tileSize*24))){
-                        currentRoom = "Dining Room";}
+            } else if(((gp.tileSize*13) <= worldX && worldX <= (gp.tileSize*31)) &&
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*24))){
+                currentRoom = "Dining Room";}
+            else if(((gp.tileSize*6) <= worldX && worldX <= (gp.tileSize*13)) &&
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*31))){
+                currentRoom = "Kitchen";}
+            else if(((gp.tileSize*13) <= worldX && worldX <= (gp.tileSize*31)) &&
+                    ((gp.tileSize*24) <= worldY && worldY <= (gp.tileSize*31))){
+                currentRoom = "Entrance";}
+            else if(((gp.tileSize*6) <= worldX && worldX <= (gp.tileSize*16)) &&
+                    ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*16))){
+                currentRoom = "Master Bedroom";}
+            else if(((gp.tileSize*30) <= worldX && worldX <= (gp.tileSize*41)) &&
+                    ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*16))){
+                currentRoom = "Bedroom";}
+            else if(((gp.tileSize*16) <= worldX && worldX <= (gp.tileSize*30)) &&
+                    ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*16))){
+                currentRoom = "Second Floor";}
+            else if(((gp.tileSize*16) <= worldX && worldX <= (gp.tileSize*40)) &&
+                    ((gp.tileSize*34) <= worldY && worldY <= (gp.tileSize*45))){
+                currentRoom = "Basement?";}
             else {currentRoom = "???";}
 
 
