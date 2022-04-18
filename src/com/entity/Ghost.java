@@ -6,50 +6,62 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Random;
 
 
 public class Ghost extends Entity{
     GamePanel gp;
 
-    //public final int screenX;
-    //public final int screenY;
-    public Ghost(GamePanel gp) {
+    BufferedImage up1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+    BufferedImage up2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+    BufferedImage down1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+    BufferedImage down2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+    BufferedImage left1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+    BufferedImage left2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+    BufferedImage right1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+    BufferedImage right2= ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+
+
+    public final int screenX;
+    public final int screenY;
+    public Ghost(GamePanel gp) throws IOException {
         this.gp = gp;
 
-        //screenX = gp.screenWidth/2 - (gp.tileSize/2);
-        //screenY = gp.screenHeight/2 - (gp.tileSize/2);
+        screenX = gp.screenWidth/2 - (gp.tileSize/2);
+        screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
-        //solidArea = new Rectangle(8,16,20,24);
+        solidArea = new Rectangle(8,16,20,24);
 
         setDefaultValues();
-        getGhostImage();
+//        getGhostImage();
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 38;
-        worldY = gp.tileSize * 21;
+        worldX = gp.tileSize * 36;
+        worldY = gp.tileSize * 9;
         speed = 3;
-        direction = "left";
+        direction = "up";
 
     }
-    public void getGhostImage(){
-        try{
-
-
-            up1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.png"));
-            up2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.png"));
-            down1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.png"));
-            down2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.png"));
-            left1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.png"));
-            left2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.png"));
-            right1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.png"));
-            right2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.png"));
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
+//    public void getGhostImage(){
+//        System.out.println("called");
+//        try{
+//
+//
+//            up1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+//            up2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+//            down1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+//            down2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+//            left1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+//            left2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+//            right1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
+//            right2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
+//            System.out.println("image found");
+//
+//        }catch (IOException e){
+//            e.printStackTrace();
+//            System.out.println("image not found");
+//        }
+//    }
 
     public void setGhost(){
 
@@ -69,6 +81,22 @@ public class Ghost extends Entity{
         }
 
 
+            switch (direction) {
+                case "up":
+                    worldY -= speed;
+                    break;
+                case "down":
+                    worldY += speed;
+                    break;
+                case "left":
+                    worldX -= speed;
+                    break;
+                case "right":
+                    worldX += speed;
+                    break;
+            }
+
+
         spriteCounter++;
         if(spriteCounter > 12) {
             if (spriteNumber == 1) {
@@ -78,38 +106,64 @@ public class Ghost extends Entity{
             }
             spriteCounter = 0;
             System.out.println("GhostX is " + (worldX/48) +" GhostY is "+(worldY/48));
-        }
-
-
 
         }
-    public void draw(Graphics2D g2){
+
+
+
+        }
+    public void draw(Graphics2D g2) {
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
         BufferedImage image = null;
 
 
-
-        switch (direction){
+        switch (direction) {
             case "up":
-                if(spriteNumber == 1){image = up1;}
-                if(spriteNumber == 2){image = up2;}
+                if (spriteNumber == 1) {
+                    image = this.up1;
+                }
+                if (spriteNumber == 2) {
+                    image = this.up2;
+                }
                 break;
             case "down":
-                if(spriteNumber == 1){image = down1;}
-                if(spriteNumber == 2){image = down2;}
+                if (spriteNumber == 1) {
+                    image = this.down1;
+                }
+                if (spriteNumber == 2) {
+                    image = this.down2;
+                }
                 break;
             case "left":
-                if(spriteNumber == 1){image = left1;}
-                if(spriteNumber == 2){image = left2;}
+                if (spriteNumber == 1) {
+                    image = this.left1;
+                }
+                if (spriteNumber == 2) {
+                    image = this.left2;
+                }
                 break;
             case "right":
-                if(spriteNumber == 1){image = right1;}
-                if(spriteNumber == 2){image = right2;}
+                if (spriteNumber == 1) {
+                    image = this.right1;
+                }
+                if (spriteNumber == 2) {
+                    image = this.right2;
+                }
                 break;
-        }
 
-        g2.drawImage(image, gp.tileSize, gp.tileSize, null);
+        }
+        System.out.println("called");
+
+        int screenX = worldX - gp.player.worldX + gp.player.screenX;
+        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+
+        if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
+           worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+           worldY+ gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldY- gp.tileSize < gp.player.worldY + gp.player.screenY){
+            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        }
 
     }
     public int getRandomNumber(int min, int max) {

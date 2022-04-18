@@ -11,6 +11,7 @@ import com.tile.TileManager;
 
 import javax.swing.JPanel;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -58,7 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int pauseState = 2;
 
 
-    public GamePanel(){
+    public GamePanel() throws IOException {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.black);
         this.setDoubleBuffered(true);
