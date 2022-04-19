@@ -8,7 +8,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 
-public class Ghost extends Entity{
+public class Ghost3 extends Entity{
     GamePanel gp;
 
     BufferedImage up1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
@@ -23,7 +23,7 @@ public class Ghost extends Entity{
 
     public final int screenX;
     public final int screenY;
-    public Ghost(GamePanel gp) throws IOException {
+    public Ghost3(GamePanel gp) throws IOException {
         this.gp = gp;
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
@@ -36,7 +36,7 @@ public class Ghost extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 36;
+        worldX = gp.tileSize * 10;
         worldY = gp.tileSize * 9;
         speed = 3;
         direction = "up";
@@ -81,20 +81,20 @@ public class Ghost extends Entity{
         }
 
 
-            switch (direction) {
-                case "up":
-                    worldY -= speed;
-                    break;
-                case "down":
-                    worldY += speed;
-                    break;
-                case "left":
-                    worldX -= speed;
-                    break;
-                case "right":
-                    worldX += speed;
-                    break;
-            }
+        switch (direction) {
+            case "up":
+                worldY -= speed;
+                break;
+            case "down":
+                worldY += speed;
+                break;
+            case "left":
+                worldX -= speed;
+                break;
+            case "right":
+                worldX += speed;
+                break;
+        }
 
 
         spriteCounter++;
@@ -111,7 +111,7 @@ public class Ghost extends Entity{
 
 
 
-        }
+    }
     public void draw(Graphics2D g2) {
 //        g2.setColor(Color.white);
 //        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
@@ -153,14 +153,14 @@ public class Ghost extends Entity{
                 break;
 
         }
-    
+
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
-           worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
-           worldY+ gp.tileSize > gp.player.worldY - gp.player.screenY &&
+                worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
+                worldY+ gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY- gp.tileSize < gp.player.worldY + gp.player.screenY){
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
