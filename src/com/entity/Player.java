@@ -18,6 +18,8 @@ public class Player extends Entity{
     public int HP;
     public String objective;
     public boolean keyFound = false;
+    public static int HP;
+
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -170,6 +172,10 @@ public class Player extends Entity{
                 }
             }
 
+            if(HP <= 0){
+                gp.gameState = gp.titleState;
+            }
+
             spriteCounter++;
             if(spriteCounter > 12) {
                 if (spriteNumber == 1) {
@@ -216,6 +222,7 @@ public class Player extends Entity{
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
+
 
 
 
