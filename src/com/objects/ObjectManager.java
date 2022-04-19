@@ -28,7 +28,6 @@ public class ObjectManager {
 
     public ObjectManager(GamePanel gp){
         this.gp = gp;
-//        ArrayList<Object> objs = null;
         for (Furniture item:items
              ) {
             Object obj = new Object(item.getName(), item.getUrl());
@@ -46,15 +45,10 @@ public class ObjectManager {
             gp.obj.set(i, objects.get(i));
             int xAxis = x[i];
             int yAxis = y[i];
-            //gp.obj.get(i).worldX = GameUtils.getRandomNumber(0,50) *gp.tileSize;
-            //gp.obj.get(i).worldY = GameUtils.getRandomNumber(0,50) *gp.tileSize;
             gp.obj.get(i).worldX = (xAxis) *gp.tileSize;
             gp.obj.get(i).worldY = (yAxis) *gp.tileSize;
         }
 
         }
-//        gp.obj[0] = new Object();
-//        gp.obj[0].worldX = 40 *gp.tileSize;
-//        gp.obj[0].worldY = 23 *gp.tileSize;
 
 }

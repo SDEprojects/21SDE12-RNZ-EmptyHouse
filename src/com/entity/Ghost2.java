@@ -157,9 +157,10 @@ public class Ghost2 extends Entity{
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
-        if(screenX - gp.player.screenX == 1 || screenX - gp.player.screenX == 0 && screenY - gp.player.screenY == 1 || screenY - gp.player.screenY == 0 ){
+//        && screenY - gp.player.screenY == 1 || screenY - gp.player.screenY == 0
+        if(screenX - gp.player.screenX == 0 ){
             int hp = Player.HP;
-            hp = hp -10;
+            hp = hp -2;
 
             Player.HP = hp;
             //System.out.println("YOU LOST HP");
