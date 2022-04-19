@@ -15,11 +15,20 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
-    public int HP;
+//    public int HP;
     public String objective;
     public boolean keyFound = false;
     public static int HP;
+    public int currentTimeLeft = 4000;
 
+
+    public int getCurrentTimeLeft() {
+        return currentTimeLeft;
+    }
+
+    public void setCurrentTimeLeft(int currentTimeLeft) {
+        this.currentTimeLeft = currentTimeLeft;
+    }
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -172,7 +181,7 @@ public class Player extends Entity{
                 }
             }
 
-            if(HP <= 0){
+            if(HP <= 0 || getCurrentTimeLeft() <= 0){
                 gp.gameState = gp.titleState;
             }
 

@@ -12,8 +12,6 @@ public class GameUtils {
     public static ArrayList<Furniture> setKeyFurniture() {
 
         Thing key = new Thing("key", "Key to the exit.");
-
-
             try {
                 furniture = new ArrayList<>(JSON_Handler.getFurniture());
 
@@ -22,11 +20,8 @@ public class GameUtils {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-
         Furniture keyfurniture = furniture.get(getRandomNumber(0,furniture.size()));
         keyfurniture.setKey(key);
-        System.out.println(furniture);
-
             return furniture;
 
 

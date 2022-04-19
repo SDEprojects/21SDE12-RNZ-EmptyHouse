@@ -42,26 +42,6 @@ public class Ghost extends Entity{
         direction = "up";
 
     }
-//    public void getGhostImage(){
-//        System.out.println("called");
-//        try{
-//
-//
-//            up1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
-//            up2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
-//            down1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
-//            down2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
-//            left1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
-//            left2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
-//            right1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
-//            right2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
-//            System.out.println("image found");
-//
-//        }catch (IOException e){
-//            e.printStackTrace();
-//            System.out.println("image not found");
-//        }
-//    }
 
     public void setGhost(){
 
@@ -158,9 +138,9 @@ public class Ghost extends Entity{
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
 
-        if(screenX - gp.player.screenX == 1 || screenX - gp.player.screenX == 0 && screenY - gp.player.screenY == 1 || screenY - gp.player.screenY == 0 ){
+        if(screenX - gp.player.screenX == 0 ){
             int hp = Player.HP;
-            hp = hp -10;
+            hp = hp -2;
 
             Player.HP = hp;
             //System.out.println("YOU LOST HP");

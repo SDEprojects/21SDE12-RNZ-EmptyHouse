@@ -54,7 +54,6 @@ public class JSON_Handler {
     public static Collection<Furniture>  getFurniture() throws IOException, ParseException{
         InputStreamReader isr = new InputStreamReader(getFileFromResourceAsStream("com/Assets/json/furniture.json"));
         Object objItems = new JSONParser().parse(isr);
-        System.out.println(objItems);
         Collection<Object> inventory = new ArrayList<>();
         JSONArray jaItems = (JSONArray) objItems;
         inventory.addAll(jaItems);
@@ -82,8 +81,6 @@ public class JSON_Handler {
     }
 
     public static void main(String[] args) {
-        System.out.println(things);
-        System.out.println(furnatures);
 
     }
 }
