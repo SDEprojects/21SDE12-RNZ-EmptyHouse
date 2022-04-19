@@ -3,6 +3,11 @@ package com.client;
 import com.entity.Player;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class UI {
     GamePanel gp;
@@ -10,6 +15,9 @@ public class UI {
     Font font1;
     public int menuOptionNumber = 0;
     Player player;
+
+
+
 
 
     public UI(GamePanel gp, Player player){
@@ -36,6 +44,10 @@ public class UI {
         }
         if (gp.gameState == gp.pauseState){
             drawPauseScreen();
+        }
+
+        if(gp.gameState == gp.winState) {
+            drawWinScreen();
         }
 
     }
@@ -70,7 +82,18 @@ public class UI {
 
     }
 
-    public void drawPauseScreen(){
+    public void drawWinScreen() {
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,72F));
+        String text = "You Win!!!";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize * 2;
+        g2.drawString(text, x, y);
+
+
+    }
+
+
+        public void drawPauseScreen(){
         String text = "PAUSED";
         int x = getXForCenteredText(text);
         int y = gp.screenHeight/2;
@@ -105,11 +128,44 @@ public class UI {
         p = gp.tileSize;
         g2.drawString(HpActText, o, p);
 
+//        Instructions
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
+        g2.setColor(Color.white);
+        String objective = player.objective;
+        x = 475;
+        y = gp.tileSize * 2;
+        g2.drawString(objective, x,y);
+
+
         // Draw Timer
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
         g2.setColor(Color.white);
 
-        String TimerText = String.valueOf(System.currentTimeMillis()/1000);
+
+        Timer timer = new Timer();
+
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                player.setCurrentTimeLeft(player.getCurrentTimeLeft() -1);
+//
+                try {
+                    Thread.sleep(100000000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+
+
+        },1000L,1000000000000000000L);
+
+
+        String TimerText = String.valueOf(player.getCurrentTimeLeft());
+        checkLost();
+
+
 
         x = gp.tileSize;
         y = gp.tileSize;
@@ -125,6 +181,12 @@ public class UI {
         y = gp.tileSize*2;
         g2.drawString(currentRoomText, x,y);
 
+    }
+
+    public void checkLost() {
+        if(player.getCurrentTimeLeft() <=0) {
+            gp.gameState = gp.titleState;
+        }
     }
 
 

@@ -15,7 +15,20 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
-    public int HP;
+//    public int HP;
+    public String objective;
+    public boolean keyFound = false;
+    public static int HP;
+    public int currentTimeLeft = 4000;
+
+
+    public int getCurrentTimeLeft() {
+        return currentTimeLeft;
+    }
+
+    public void setCurrentTimeLeft(int currentTimeLeft) {
+        this.currentTimeLeft = currentTimeLeft;
+    }
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -37,6 +50,7 @@ public class Player extends Entity{
         speed = 5;
         direction = "down";
         HP = 100;
+        objective = "Find the key!";
     }
 
     public void getPlayerImage(){
@@ -123,6 +137,25 @@ public class Player extends Entity{
                 currentRoom = "Basement?";}
             else {currentRoom = "???";}
 
+            //Check for key
+            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*21))){
+              objective = "Key found! Go back to the Entrance!";
+              keyFound = true;
+            }
+
+
+            //Win conditions
+            if(keyFound &&
+                    ((gp.tileSize*9) <= worldX && worldX <= (gp.tileSize*11)) &&
+                    ((gp.tileSize*39) <= worldY && worldY <= (gp.tileSize*41))){
+                objective = "Key found! Go back to the Entrance!";
+                gp.gameState = gp.winState;
+            }
+
+
+
+
 
 
 
@@ -146,6 +179,10 @@ public class Player extends Entity{
                         worldX += speed;
                         break;
                 }
+            }
+
+            if(HP <= 0 || getCurrentTimeLeft() <= 0){
+                gp.gameState = gp.titleState;
             }
 
             spriteCounter++;
@@ -194,6 +231,7 @@ public class Player extends Entity{
         g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
 
     }
+
 
 
 

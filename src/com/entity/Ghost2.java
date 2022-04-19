@@ -36,7 +36,7 @@ public class Ghost2 extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 25;
+        worldX = gp.tileSize * 22;
         worldY = gp.tileSize * 12;
         speed = 3;
         direction = "up";
@@ -105,7 +105,7 @@ public class Ghost2 extends Entity{
                 spriteNumber = 1;
             }
             spriteCounter = 0;
-            System.out.println("GhostX is " + (worldX/48) +" GhostY is "+(worldY/48));
+            //System.out.println("GhostX is " + (worldX/48) +" GhostY is "+(worldY/48));
 
         }
 
@@ -157,6 +157,14 @@ public class Ghost2 extends Entity{
 
         int screenX = worldX - gp.player.worldX + gp.player.screenX;
         int screenY = worldY - gp.player.worldY + gp.player.screenY;
+//        && screenY - gp.player.screenY == 1 || screenY - gp.player.screenY == 0
+        if(screenX - gp.player.screenX == 0 ){
+            int hp = Player.HP;
+            hp = hp -2;
+
+            Player.HP = hp;
+            //System.out.println("YOU LOST HP");
+        }
 
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&

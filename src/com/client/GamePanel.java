@@ -58,6 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int titleState = 0;
     public final int playState = 1;
     public final int pauseState = 2;
+    public final int winState = 3;
 
 
     public GamePanel() throws IOException {
@@ -129,7 +130,9 @@ public class GamePanel extends JPanel implements Runnable {
         //Title Screen
         if(gameState == titleState){
             ui.draw(g2);
-        } else {
+        }
+
+        else if (gameState == playState){
             tileM.draw(g2);
 
             for (int i =0; i< obj.size(); i++){
@@ -143,6 +146,10 @@ public class GamePanel extends JPanel implements Runnable {
             ghost2.draw(g2);
             ghost3.draw(g2);
             player.draw(g2);
+            ui.draw(g2);
+        }
+
+         else if (gameState == winState) {
             ui.draw(g2);
         }
         g2.dispose();
