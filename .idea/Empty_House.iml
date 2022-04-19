@@ -46,8 +46,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="json-20220320" level="project" />
-    <orderEntry type="library" name="json-simple-1.1.jar" level="project" />
+    <orderEntry type="library" name="json-simple-1.11" level="project" />
     <orderEntry type="library" name="json-simple-1.1" level="project" />
   </component>
 </module>
