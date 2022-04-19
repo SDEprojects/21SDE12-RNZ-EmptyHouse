@@ -2,9 +2,7 @@ package com.client;
 
 
 
-import com.entity.Entity;
-import com.entity.Ghost;
-import com.entity.Player;
+import com.entity.*;
 import com.objects.Object;
 import com.objects.ObjectManager;
 import com.tile.TileManager;
@@ -43,6 +41,9 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
 
     public Ghost ghost = new Ghost(this);
+    public Ghost1 ghost1 = new Ghost1(this);
+    public Ghost2 ghost2 = new Ghost2(this);
+    public Ghost3 ghost3 = new Ghost3(this);
 
     public UI ui = new UI(this,player);
 
@@ -110,6 +111,9 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
 
             ghost.setGhost();
+            ghost1.setGhost();
+            ghost2.setGhost();
+            ghost3.setGhost();
         }
         if (gameState == pauseState){
             //
@@ -135,6 +139,9 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             ghost.draw(g2);
+            ghost1.draw(g2);
+            ghost2.draw(g2);
+            ghost3.draw(g2);
             player.draw(g2);
             ui.draw(g2);
         }

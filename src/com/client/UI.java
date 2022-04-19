@@ -3,7 +3,6 @@ package com.client;
 import com.entity.Player;
 
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
 
 public class UI {
     GamePanel gp;
@@ -83,6 +82,8 @@ public class UI {
         // HUD dimensions
         int x = 0;
         int y = 0;
+        int o = 0;
+        int p = 0;
         int width = gp.screenWidth;
         int height = gp.tileSize*2;
 
@@ -94,10 +95,15 @@ public class UI {
         // Draw HP Counter
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
         g2.setColor(Color.white);
-        String HPText = "HP: 100";
+        int playerHP = 100;
+        String HPText = String.valueOf(player.HP);
         x = gp.tileSize*12;
         y = gp.tileSize;
         g2.drawString(HPText, x,y);
+        String HpActText = "HP";
+        o = gp.tileSize*10;
+        p = gp.tileSize;
+        g2.drawString(HpActText, o, p);
 
         // Draw Timer
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
@@ -120,6 +126,8 @@ public class UI {
         g2.drawString(currentRoomText, x,y);
 
     }
+
+
 
     public int getXForCenteredText(String text){
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
