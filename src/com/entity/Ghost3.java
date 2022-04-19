@@ -105,7 +105,7 @@ public class Ghost3 extends Entity{
                 spriteNumber = 1;
             }
             spriteCounter = 0;
-            System.out.println("GhostX is " + (worldX/48) +" GhostY is "+(worldY/48));
+            //System.out.println("GhostX is " + (worldX/48) +" GhostY is "+(worldY/48));
 
         }
 
@@ -162,7 +162,7 @@ public class Ghost3 extends Entity{
             hp = hp -10;
 
             Player.HP = hp;
-            System.out.println("YOU LOST HP");
+            //System.out.println("YOU LOST HP");
         }
 
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&
