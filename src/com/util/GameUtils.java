@@ -25,6 +25,7 @@ public class GameUtils {
 
         Furniture keyfurniture = furniture.get(getRandomNumber(0,furniture.size()));
         keyfurniture.setKey(key);
+        System.out.println(furniture);
 
             return furniture;
 

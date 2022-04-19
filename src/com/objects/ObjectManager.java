@@ -40,8 +40,8 @@ public class ObjectManager {
     }
 
     public void setObjects(){
-        int[] x = {11, 12, 13, 14, 15, 16};
-        int[] y = {23, 23, 23, 23, 23, 23};
+        int[] x = {30, 16, 35, 14, 15, 16};
+        int[] y = {30, 40, 20, 23, 10, 23};
         for (int i = 0; i < objects.size(); i++) {
             gp.obj.set(i, objects.get(i));
             int xAxis = x[i];

@@ -38,6 +38,10 @@ public class UI {
             drawPauseScreen();
         }
 
+        if(gp.gameState == gp.winState) {
+            drawWinScreen();
+        }
+
     }
 
     public void drawTitleScreen(){
@@ -70,7 +74,18 @@ public class UI {
 
     }
 
-    public void drawPauseScreen(){
+    public void drawWinScreen() {
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,72F));
+        String text = "You Win!!!";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize * 2;
+        g2.drawString(text, x, y);
+
+
+    }
+
+
+        public void drawPauseScreen(){
         String text = "PAUSED";
         int x = getXForCenteredText(text);
         int y = gp.screenHeight/2;
@@ -104,6 +119,15 @@ public class UI {
         o = gp.tileSize*10;
         p = gp.tileSize;
         g2.drawString(HpActText, o, p);
+
+//        Instructions
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
+        g2.setColor(Color.white);
+        String objective = player.objective;
+        x = 475;
+        y = gp.tileSize * 2;
+        g2.drawString(objective, x,y);
+
 
         // Draw Timer
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));

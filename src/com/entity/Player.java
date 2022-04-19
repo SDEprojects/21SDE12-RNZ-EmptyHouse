@@ -15,7 +15,11 @@ public class Player extends Entity{
 
     public final int screenX;
     public final int screenY;
+    public int HP;
+    public String objective;
+    public boolean keyFound = false;
     public static int HP;
+
 
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
@@ -37,6 +41,7 @@ public class Player extends Entity{
         speed = 5;
         direction = "down";
         HP = 100;
+        objective = "Find the key!";
     }
 
     public void getPlayerImage(){
@@ -122,6 +127,25 @@ public class Player extends Entity{
                     ((gp.tileSize*34) <= worldY && worldY <= (gp.tileSize*45))){
                 currentRoom = "Basement?";}
             else {currentRoom = "???";}
+
+            //Check for key
+            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*21))){
+              objective = "Key found! Go back to the Entrance!";
+              keyFound = true;
+            }
+
+
+            //Win conditions
+            if(keyFound &&
+                    ((gp.tileSize*9) <= worldX && worldX <= (gp.tileSize*11)) &&
+                    ((gp.tileSize*39) <= worldY && worldY <= (gp.tileSize*41))){
+                objective = "Key found! Go back to the Entrance!";
+                gp.gameState = gp.winState;
+            }
+
+
+
 
 
 
