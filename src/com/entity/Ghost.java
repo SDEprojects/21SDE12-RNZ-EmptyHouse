@@ -10,6 +10,11 @@ import java.io.IOException;
 
 public class Ghost extends Entity{
     GamePanel gp;
+    Player player;
+    public int speed =3;
+    public String direction = "up";
+    public int worldX;
+    public int worldY;
 
     BufferedImage up1 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost1_1_16x16.jpg"));
     BufferedImage up2 = ImageIO.read(getClass().getResourceAsStream("/ghostpictures/Ghost2_1_16x16.jpg"));
@@ -23,24 +28,42 @@ public class Ghost extends Entity{
 
     public final int screenX;
     public final int screenY;
-    public Ghost(GamePanel gp) throws IOException {
+    public Ghost(GamePanel gp,Player player,int worldX,int worldY) throws IOException {
         this.gp = gp;
+        setPlayer(player);
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
 
         solidArea = new Rectangle(8,16,20,24);
 
-        setDefaultValues();
-//        getGhostImage();
+        setWorldX(worldX);
+        setWorldY(worldY);
     }
 
-    public void setDefaultValues(){
-        worldX = gp.tileSize * 37;
-        worldY = gp.tileSize * 9;
-        speed = 3;
-        direction = "up";
 
+    public int getWorldX() {
+        return worldX;
+    }
+
+    public void setWorldX(int worldX) {
+        this.worldX = worldX;
+    }
+
+    public int getWorldY() {
+        return worldY;
+    }
+
+    public void setWorldY(int worldY) {
+        this.worldY = worldY;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public void setGhost(){
@@ -85,16 +108,13 @@ public class Ghost extends Entity{
                 spriteNumber = 1;
             }
             spriteCounter = 0;
-            //System.out.println("GhostX is " + (worldX/48) +" GhostY is "+(worldY/48));
-
         }
 
 
 
         }
     public void draw(Graphics2D g2) {
-//        g2.setColor(Color.white);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+
         BufferedImage image = null;
 
 
@@ -135,15 +155,11 @@ public class Ghost extends Entity{
         }
 
 
-        int screenX = worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+        int screenX = (worldX - gp.player.worldX) + gp.player.screenX -16;
+        int screenY = (worldY - gp.player.worldY) + gp.player.screenY;
 
-        if(screenX - gp.player.screenX == 0 ){
-            int hp = Player.HP;
-            hp = hp -2;
-
-            Player.HP = hp;
-            //System.out.println("YOU LOST HP");
+        if(screenX - gp.player.screenX == 0){
+            getPlayer().setHP(getPlayer().getHP()-2);
         }
 
         if(worldX + gp.tileSize > gp.player.worldX - gp.player.screenX &&

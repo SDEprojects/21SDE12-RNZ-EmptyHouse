@@ -12,15 +12,20 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     public String currentRoom;
-
     public final int screenX;
     public final int screenY;
-//    public int HP;
     public String objective;
     public boolean keyFound = false;
-    public static int HP;
+    public int HP;
     public int currentTimeLeft = 4000;
 
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
 
     public int getCurrentTimeLeft() {
         return currentTimeLeft;
@@ -55,7 +60,6 @@ public class Player extends Entity{
 
     public void getPlayerImage(){
         try{
-
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/c-u-3.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/c-u-2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/player/c-d-3.png"));
@@ -131,12 +135,11 @@ public class Player extends Entity{
             else {currentRoom = "???";}
 
             //Check for key
-            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
-                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*21))){
+            if(((gp.tileSize*11) <= worldX && worldX <= (gp.tileSize*13)) &&
+                    ((gp.tileSize*3) <= worldY && worldY <= (gp.tileSize*5))){
               objective = "Key found! Exit at the entrance.";
               keyFound = true;
             }
-
 
             //Win conditions
             if(keyFound &&
@@ -145,11 +148,6 @@ public class Player extends Entity{
                 objective = "Key found! Exit at the entrance.";
                 gp.gameState = gp.winState;
             }
-
-
-
-
-
 
 
             // Check tile collision
@@ -174,9 +172,6 @@ public class Player extends Entity{
                 }
             }
 
-            if(HP <= 0 || getCurrentTimeLeft() <= 0){
-                gp.gameState = gp.loseState;
-            }
 
             spriteCounter++;
             if(spriteCounter > 12) {
@@ -186,19 +181,12 @@ public class Player extends Entity{
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
-                //System.out.println("World X is " + worldX +" World Y is "+worldY);
             }
-
         }
-
-
-
-
     }
 
     public void draw(Graphics2D g2){
-//        g2.setColor(Color.white);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+
         BufferedImage image = null;
 
         switch (direction){
