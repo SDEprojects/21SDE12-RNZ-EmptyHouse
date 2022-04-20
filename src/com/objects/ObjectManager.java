@@ -31,7 +31,6 @@ public class ObjectManager {
         for (Furniture item:items
              ) {
             Object obj = new Object(item.getName(), item.getUrl());
-            System.out.println(obj.getName());
             addObject(obj);
 
         }
@@ -39,8 +38,8 @@ public class ObjectManager {
     }
 
     public void setObjects(){
-        int[] x = {30, 16, 35, 14, 15, 16};
-        int[] y = {30, 40, 20, 23, 10, 23};
+        int[] x = {30, 16, 35, 40, 15, 12};
+        int[] y = {30, 40, 20, 6, 10, 4};
         for (int i = 0; i < objects.size(); i++) {
             gp.obj.set(i, objects.get(i));
             int xAxis = x[i];

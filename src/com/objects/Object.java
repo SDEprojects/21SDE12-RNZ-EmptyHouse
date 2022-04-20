@@ -46,12 +46,8 @@ public class Object {
 
     public Object(String name, String fileName){
         setName(name);
-        System.out.println(fileName);
         try{
-//            image = ImageIO.read(getClass().getResourceAsStream(fileName));
-//            image = ;
             setImage(ImageIO.read(getClass().getResourceAsStream(fileName)));
-
         }catch (IOException e){
             e.printStackTrace();}
 

@@ -12,15 +12,20 @@ public class Player extends Entity{
     GamePanel gp;
     KeyHandler keyH;
     public String currentRoom;
-
     public final int screenX;
     public final int screenY;
-//    public int HP;
     public String objective;
     public boolean keyFound = false;
-    public static int HP;
+    public int HP;
     public int currentTimeLeft = 4000;
 
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
+    }
 
     public int getCurrentTimeLeft() {
         return currentTimeLeft;
@@ -33,7 +38,7 @@ public class Player extends Entity{
     public Player(GamePanel gp, KeyHandler keyH){
         this.gp = gp;
         this.keyH = keyH;
-        currentRoom = "Library";
+        currentRoom = "Entrance";
 
         screenX = gp.screenWidth/2 - (gp.tileSize/2);
         screenY = gp.screenHeight/2 - (gp.tileSize/2);
@@ -45,17 +50,16 @@ public class Player extends Entity{
     }
 
     public void setDefaultValues(){
-        worldX = gp.tileSize * 40;
-        worldY = gp.tileSize * 23;
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 31;
         speed = 5;
-        direction = "down";
+        direction = "up";
         HP = 100;
         objective = "Find the key!";
     }
 
     public void getPlayerImage(){
         try{
-
             up1 = ImageIO.read(getClass().getResourceAsStream("/player/c-u-3.png"));
             up2 = ImageIO.read(getClass().getResourceAsStream("/player/c-u-2.png"));
             down1 = ImageIO.read(getClass().getResourceAsStream("/player/c-d-3.png"));
@@ -90,10 +94,6 @@ public class Player extends Entity{
 
             // Check if stairs
             if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
-                    ((gp.tileSize*31) <= worldY && worldY <= (gp.tileSize*33))){
-                worldY += gp.tileSize*7;
-            }
-            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
                     ((gp.tileSize*34) <= worldY && worldY <= (gp.tileSize*36))){
                 worldY -= gp.tileSize*7;
             }
@@ -112,19 +112,19 @@ public class Player extends Entity{
 
             // Current room
             if(((gp.tileSize*31) <= worldX && worldX <= (gp.tileSize*43)) &&
-                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*27))){
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*35))){
                 currentRoom = "Library";
             } else if(((gp.tileSize*13) <= worldX && worldX <= (gp.tileSize*31)) &&
                     ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*24))){
                 currentRoom = "Dining Room";}
             else if(((gp.tileSize*6) <= worldX && worldX <= (gp.tileSize*13)) &&
-                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*31))){
+                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*32))){
                 currentRoom = "Kitchen";}
             else if(((gp.tileSize*13) <= worldX && worldX <= (gp.tileSize*31)) &&
-                    ((gp.tileSize*24) <= worldY && worldY <= (gp.tileSize*31))){
+                    ((gp.tileSize*24) <= worldY && worldY <= (gp.tileSize*35))){
                 currentRoom = "Entrance";}
             else if(((gp.tileSize*6) <= worldX && worldX <= (gp.tileSize*16)) &&
-                    ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*16))){
+                    ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*19))){
                 currentRoom = "Master Bedroom";}
             else if(((gp.tileSize*30) <= worldX && worldX <= (gp.tileSize*41)) &&
                     ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*16))){
@@ -132,31 +132,22 @@ public class Player extends Entity{
             else if(((gp.tileSize*16) <= worldX && worldX <= (gp.tileSize*30)) &&
                     ((gp.tileSize*1) <= worldY && worldY <= (gp.tileSize*16))){
                 currentRoom = "Second Floor";}
-            else if(((gp.tileSize*16) <= worldX && worldX <= (gp.tileSize*40)) &&
-                    ((gp.tileSize*34) <= worldY && worldY <= (gp.tileSize*45))){
-                currentRoom = "Basement?";}
             else {currentRoom = "???";}
 
             //Check for key
-            if(((gp.tileSize*34) <= worldX && worldX <= (gp.tileSize*36)) &&
-                    ((gp.tileSize*19) <= worldY && worldY <= (gp.tileSize*21))){
-              objective = "Key found! Go back to the Entrance!";
+            if(((gp.tileSize*11) <= worldX && worldX <= (gp.tileSize*13)) &&
+                    ((gp.tileSize*3) <= worldY && worldY <= (gp.tileSize*5))){
+              objective = "Key found! Exit at the entrance.";
               keyFound = true;
             }
 
-
             //Win conditions
             if(keyFound &&
-                    ((gp.tileSize*9) <= worldX && worldX <= (gp.tileSize*11)) &&
-                    ((gp.tileSize*39) <= worldY && worldY <= (gp.tileSize*41))){
-                objective = "Key found! Go back to the Entrance!";
+                    ((gp.tileSize*23) <= worldX && worldX <= (gp.tileSize*25)) &&
+                    ((gp.tileSize*32) <= worldY && worldY <= (gp.tileSize*33))){
+                objective = "Key found! Exit at the entrance.";
                 gp.gameState = gp.winState;
             }
-
-
-
-
-
 
 
             // Check tile collision
@@ -181,9 +172,6 @@ public class Player extends Entity{
                 }
             }
 
-            if(HP <= 0 || getCurrentTimeLeft() <= 0){
-                gp.gameState = gp.titleState;
-            }
 
             spriteCounter++;
             if(spriteCounter > 12) {
@@ -193,19 +181,12 @@ public class Player extends Entity{
                     spriteNumber = 1;
                 }
                 spriteCounter = 0;
-                //System.out.println("World X is " + worldX +" World Y is "+worldY);
             }
-
         }
-
-
-
-
     }
 
     public void draw(Graphics2D g2){
-//        g2.setColor(Color.white);
-//        g2.fillRect(x, y, gp.tileSize, gp.tileSize);
+
         BufferedImage image = null;
 
         switch (direction){

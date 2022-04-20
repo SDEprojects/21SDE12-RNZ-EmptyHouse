@@ -17,20 +17,14 @@ public class UI {
     Player player;
 
 
-
-
-
     public UI(GamePanel gp, Player player){
         this.gp = gp;
         this.player = player;
-
         font1 = new Font("Serif", Font.BOLD, 100);
     }
 
     public void draw(Graphics2D g2){
         this.g2 = g2;
-
-
         g2.setFont(font1);
         g2.setColor(Color.white);
 
@@ -40,7 +34,6 @@ public class UI {
 
         if (gp.gameState == gp.playState){
             drawHUD();
-
         }
         if (gp.gameState == gp.pauseState){
             drawPauseScreen();
@@ -48,6 +41,10 @@ public class UI {
 
         if(gp.gameState == gp.winState) {
             drawWinScreen();
+        }
+
+        if(gp.gameState == gp.loseState) {
+            drawLoseScreen();
         }
 
     }
@@ -60,7 +57,6 @@ public class UI {
 
         //Menu
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,48F));
-
 
         text = "New Game";
         x = getXForCenteredText(text);
@@ -77,9 +73,6 @@ public class UI {
         if(menuOptionNumber == 1){
             g2.drawString(">", x-gp.tileSize, y);
         }
-
-
-
     }
 
     public void drawWinScreen() {
@@ -88,12 +81,18 @@ public class UI {
         int x = getXForCenteredText(text);
         int y = gp.tileSize * 2;
         g2.drawString(text, x, y);
+    }
 
-
+    public void drawLoseScreen() {
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,72F));
+        String text = "GAME OVER";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize * 2;
+        g2.drawString(text, x, y);
     }
 
 
-        public void drawPauseScreen(){
+    public void drawPauseScreen(){
         String text = "PAUSED";
         int x = getXForCenteredText(text);
         int y = gp.screenHeight/2;
@@ -129,11 +128,11 @@ public class UI {
         g2.drawString(HpActText, o, p);
 
 //        Instructions
-        g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,24F));
         g2.setColor(Color.white);
         String objective = player.objective;
-        x = 475;
-        y = gp.tileSize * 2;
+        x = 300;
+        y = 72;
         g2.drawString(objective, x,y);
 
 
@@ -141,28 +140,21 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
         g2.setColor(Color.white);
 
-
         Timer timer = new Timer();
-
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 player.setCurrentTimeLeft(player.getCurrentTimeLeft() -1);
-//
                 try {
                     Thread.sleep(100000000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             }
-
-
-
         },1000L,1000000000000000000L);
 
 
-        String TimerText = String.valueOf(player.getCurrentTimeLeft());
+        String TimerText = String.valueOf((player.getCurrentTimeLeft())/100);
         checkLost();
 
 
@@ -174,21 +166,16 @@ public class UI {
         // Draw Current Room
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,24F));
         g2.setColor(Color.white);
-
         String currentRoomText = player.currentRoom;
-
-        x = gp.tileSize;
-        y = gp.tileSize*2;
-        g2.drawString(currentRoomText, x,y);
-
+        g2.drawString(currentRoomText, 48,72);
     }
 
     public void checkLost() {
-        if(player.getCurrentTimeLeft() <=0) {
-            gp.gameState = gp.titleState;
+        if(player.getCurrentTimeLeft() <=0 || player.getHP() <= 0) {
+            gp.gameState = gp.loseState;
         }
-    }
 
+    }
 
 
     public int getXForCenteredText(String text){

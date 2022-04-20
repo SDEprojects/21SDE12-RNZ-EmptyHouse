@@ -25,9 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // World map settings
     public final int maxWorldColumn = 50;
-    public final int maxWorldRow = 50;
-    public final int maxWorldWidth = tileSize * maxWorldColumn;
-    public final int maxWorldHeight = tileSize * maxWorldRow;
+    public final int maxWorldRow = 39;
 
     //Frames Per Second
     int FPS = 60;
@@ -40,15 +38,12 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker cChecker = new CollisionChecker(this);
     public Player player = new Player(this, keyH);
 
-    public Ghost ghost = new Ghost(this);
-    public Ghost1 ghost1 = new Ghost1(this);
-    public Ghost2 ghost2 = new Ghost2(this);
-    public Ghost3 ghost3 = new Ghost3(this);
-
+    public Ghost ghost0 = new Ghost(this,player,tileSize*37,tileSize*9);
+    public Ghost ghost1 = new Ghost(this,player,tileSize*28,tileSize*5);
+    public Ghost ghost2 = new Ghost(this,player,tileSize*22,tileSize*12);
+    public Ghost ghost3 = new Ghost(this,player,tileSize*10,tileSize*9);
+    public Ghost ghost4 = new Ghost(this,player,tileSize *23,tileSize*26);
     public UI ui = new UI(this,player);
-
-
-
     ObjectManager oManager = new ObjectManager(this);
 
     public ArrayList<Object> obj = oManager.getObjects();
@@ -59,6 +54,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int playState = 1;
     public final int pauseState = 2;
     public final int winState = 3;
+    public final int loseState = 4;
 
 
     public GamePanel() throws IOException {
@@ -78,8 +74,6 @@ public class GamePanel extends JPanel implements Runnable {
     public void startGameThread(){
         gameThread = new Thread(this);
         gameThread.start();
-
-
     }
 
     @Override
@@ -111,14 +105,13 @@ public class GamePanel extends JPanel implements Runnable {
         if(gameState == playState){
             player.update();
 
-            ghost.setGhost();
+            ghost0.setGhost();
             ghost1.setGhost();
             ghost2.setGhost();
             ghost3.setGhost();
+            ghost4.setGhost();
         }
-        if (gameState == pauseState){
-            //
-        }
+
 
     }
 
@@ -128,7 +121,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;
 
         //Title Screen
-        if(gameState == titleState){
+        if(gameState == titleState ||gameState == winState||gameState == loseState){
             ui.draw(g2);
         }
 
@@ -141,17 +134,15 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
 
-            ghost.draw(g2);
+            ghost0.draw(g2);
             ghost1.draw(g2);
             ghost2.draw(g2);
             ghost3.draw(g2);
+            ghost4.draw(g2);
             player.draw(g2);
             ui.draw(g2);
         }
 
-         else if (gameState == winState) {
-            ui.draw(g2);
-        }
         g2.dispose();
     }
 
