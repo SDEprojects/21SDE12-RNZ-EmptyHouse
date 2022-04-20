@@ -158,7 +158,7 @@ public class Ghost extends Entity{
         int screenX = (worldX - gp.player.worldX) + gp.player.screenX -16;
         int screenY = (worldY - gp.player.worldY) + gp.player.screenY;
 
-        if(screenX - gp.player.screenX == 0){
+        if(screenX - gp.player.screenX == 0 ){
             getPlayer().setHP(getPlayer().getHP()-2);
         }
 

@@ -122,7 +122,7 @@ public class UI {
         x = gp.tileSize*12;
         y = gp.tileSize;
         g2.drawString(HPText, x,y);
-        String HpActText = "HP";
+        String HpActText = "HP:";
         o = gp.tileSize*10;
         p = gp.tileSize;
         g2.drawString(HpActText, o, p);
@@ -133,7 +133,7 @@ public class UI {
         String objective = player.objective;
         x = 300;
         y = 72;
-        g2.drawString(objective, x,y);
+        g2.drawString(objective, (gp.tileSize*10),y);
 
 
         // Draw Timer
@@ -156,9 +156,6 @@ public class UI {
 
         String TimerText = String.valueOf((player.getCurrentTimeLeft())/100);
         checkLost();
-
-
-
         x = gp.tileSize;
         y = gp.tileSize;
         g2.drawString(TimerText, x,y);
@@ -167,7 +164,7 @@ public class UI {
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,24F));
         g2.setColor(Color.white);
         String currentRoomText = player.currentRoom;
-        g2.drawString(currentRoomText, 48,72);
+        g2.drawString(currentRoomText, gp.tileSize, 72);
     }
 
     public void checkLost() {
