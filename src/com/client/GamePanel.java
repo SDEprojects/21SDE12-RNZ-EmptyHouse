@@ -15,24 +15,15 @@ import java.util.ArrayList;
 public class GamePanel extends JPanel implements Runnable {
 
     // Screen settings
-    final int originalTileSize = 16;
-    final int scale = 3;
-    public final int tileSize = originalTileSize * scale;
+    public final int tileSize = 50;
     public final int maximumScreenColumns = 16;
     public final int maximumScreenRows = 12;
     public final int screenWidth = tileSize * maximumScreenColumns;
     public final int screenHeight = tileSize * maximumScreenRows;
-
-    // World map settings
     public final int maxWorldColumn = 50;
     public final int maxWorldRow = 39;
-
-    //Frames Per Second
     int FPS = 60;
-
     TileManager tileM = new TileManager(this);
-
-    // Instantiate the key handler
     KeyHandler keyH = new KeyHandler(this);
     Thread gameThread;
     public CollisionChecker cChecker = new CollisionChecker(this);
