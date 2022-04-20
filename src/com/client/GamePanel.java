@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     // World map settings
     public final int maxWorldColumn = 50;
-    public final int maxWorldRow = 50;
+    public final int maxWorldRow = 39;
     public final int maxWorldWidth = tileSize * maxWorldColumn;
     public final int maxWorldHeight = tileSize * maxWorldRow;
 
@@ -59,6 +59,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int playState = 1;
     public final int pauseState = 2;
     public final int winState = 3;
+    public final int loseState = 4;
 
 
     public GamePanel() throws IOException {
@@ -116,9 +117,7 @@ public class GamePanel extends JPanel implements Runnable {
             ghost2.setGhost();
             ghost3.setGhost();
         }
-        if (gameState == pauseState){
-            //
-        }
+
 
     }
 
@@ -128,7 +127,7 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D)g;
 
         //Title Screen
-        if(gameState == titleState){
+        if(gameState == titleState ||gameState == winState||gameState == loseState){
             ui.draw(g2);
         }
 
@@ -149,9 +148,6 @@ public class GamePanel extends JPanel implements Runnable {
             ui.draw(g2);
         }
 
-         else if (gameState == winState) {
-            ui.draw(g2);
-        }
         g2.dispose();
     }
 

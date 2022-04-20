@@ -50,6 +50,10 @@ public class UI {
             drawWinScreen();
         }
 
+        if(gp.gameState == gp.loseState) {
+            drawLoseScreen();
+        }
+
     }
 
     public void drawTitleScreen(){
@@ -89,11 +93,19 @@ public class UI {
         int y = gp.tileSize * 2;
         g2.drawString(text, x, y);
 
+    }
+
+    public void drawLoseScreen() {
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,72F));
+        String text = "GAME OVER";
+        int x = getXForCenteredText(text);
+        int y = gp.tileSize * 2;
+        g2.drawString(text, x, y);
 
     }
 
 
-        public void drawPauseScreen(){
+    public void drawPauseScreen(){
         String text = "PAUSED";
         int x = getXForCenteredText(text);
         int y = gp.screenHeight/2;
@@ -129,11 +141,12 @@ public class UI {
         g2.drawString(HpActText, o, p);
 
 //        Instructions
-        g2.setFont(g2.getFont().deriveFont(font1.BOLD,36F));
+        g2.setFont(g2.getFont().deriveFont(font1.BOLD,24F));
         g2.setColor(Color.white);
         String objective = player.objective;
-        x = 475;
-        y = gp.tileSize * 2;
+        x = 300;
+        y = 72
+        ;
         g2.drawString(objective, x,y);
 
 
@@ -162,7 +175,7 @@ public class UI {
         },1000L,1000000000000000000L);
 
 
-        String TimerText = String.valueOf(player.getCurrentTimeLeft());
+        String TimerText = String.valueOf((player.getCurrentTimeLeft())/100);
         checkLost();
 
 
@@ -174,18 +187,14 @@ public class UI {
         // Draw Current Room
         g2.setFont(g2.getFont().deriveFont(font1.BOLD,24F));
         g2.setColor(Color.white);
-
         String currentRoomText = player.currentRoom;
-
-        x = gp.tileSize;
-        y = gp.tileSize*2;
-        g2.drawString(currentRoomText, x,y);
+        g2.drawString(currentRoomText, 48,72);
 
     }
 
     public void checkLost() {
         if(player.getCurrentTimeLeft() <=0) {
-            gp.gameState = gp.titleState;
+            gp.gameState = gp.loseState;
         }
     }
 
